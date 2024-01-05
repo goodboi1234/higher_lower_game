@@ -1,0 +1,36 @@
+import pygame
+import sys
+from dict_data import most_searched_google as data
+from logic import logic
+
+ 
+class Game(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.init()
+        self.dict = data
+        self.screen = pygame.display.set_mode((1120 , 850))
+        
+        self.bg = pygame.image.load("/Users/zeeldarji/Desktop/python files/the_higher_lower_game.py/bg/stars.jpeg")
+        self.group = pygame.sprite.Group()
+        self.concept = logic(self.group)
+
+
+    #making the game move
+    def run(self):
+        while True:
+            self.screen.fill("blue")
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+            self.group.update()
+            pygame.display.update()
+    
+            
+
+            
+if __name__ == "__main__":    
+    game = Game()
+    game.run()
+           
